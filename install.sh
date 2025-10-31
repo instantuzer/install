@@ -3,6 +3,8 @@ set -euo pipefail
 
 # --- Prompt for user info ---
 read -rp "Enter your desired username: " USERNAME
+read -rp "Region: " R
+read -rp "City: " C
 
 # Prompt for password securely (input hidden)
 while true; do
@@ -50,16 +52,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash <<EOF
 set -e
 
-# Hostname
-echo "staticlol" > /etc/hostname
-
-# Timezone and localization
-ln -sf /usr/share/zoneinfo/UTC /etc/localtime
-hwclock --systohc
-echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-
 # Root password
 echo "root:$PASSWORD" | chpasswd
 
@@ -72,10 +64,14 @@ grub-install --efi-directory=/boot
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable NetworkManager
+hostnamectl hostname staticlol
+timedatectl set-timezone $R/$C
 
 EOF
 
 #!/bin/bash
+
+pacman -Syu unzip
 
 # Prompt user for password (won't echo)
 read -s -p "Enter GPG password: " GPG_PASS
