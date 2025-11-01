@@ -3,9 +3,6 @@ set -euo pipefail
 
 # --- Prompt for user info ---
 read -rp "Enter your desired username: " USERNAME
-read -rp "Region: " R
-read -rp "City: " C
-
 # Prompt for password securely (input hidden)
 while true; do
     read -rsp "Enter password for $USERNAME: " PASSWORD
@@ -18,6 +15,9 @@ while true; do
         echo "Passwords do not match. Please try again."
     fi
 done
+read -s -p "Enter GPG password: " GPG_PASS
+read -rp "Region: " R
+read -rp "City: " C
 
 # --- Disk selection (default to /dev/sda) ---
 DISK="/dev/nvme0n1"
@@ -43,14 +43,14 @@ mount ${DISK}p2 /mnt
 mount -m ${DISK}p1 /mnt/boot
 
 # --- Install base system ---
-pacstrap /mnt base linux-zen linux-firmware-intel intel-ucode vim nvim sudo git networkmanager grub efibootmgr xorg xorg-xinit xf86-video-intel libva-intel-driver i3 alacritty rofi firefox noto-fonts exa jq bc zip unzip lolcat xcolor pipewire pipewire-pulse brightnessctl playerctl mtpfs
+pacstrap /mnt base linux-zen linux-firmware-intel intel-ucode vim nvim sudo git networkmanager grub efibootmgr xorg xorg-xinit xf86-video-intel libva-intel-driver i3 alacritty rofi firefox noto-fonts exa jq bc zip unzip lolcat xcolor pipewire pipewire-pulse brightnessctl playerctl mtpfs tmux fastfetch htop btop chromium 
 
 # --- Fstab ---
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # --- Chroot and setup ---
-arch-chroot /mnt /bin/bash <<EOF
-set -e
+arch-chroot /mnt bash <<EOF
+set -e 
 
 # Root password
 echo "root:$PASSWORD" | chpasswd
@@ -69,13 +69,10 @@ timedatectl set-timezone $R/$C
 
 EOF
 
-#!/bin/bash
+pacman -S unzip
 
-pacman -Syu unzip
-
-# Prompt user for password (won't echo)
-read -s -p "Enter GPG password: " GPG_PASS
-echo
+sudo -u "$USERNAME" bash <<EOF
+set -e
 
 URL="https://tinyurl.com/instantdot"
 
@@ -102,6 +99,8 @@ else
     echo "Decryption failed!"
     exit 1
 fi
+
+EOF
 
 echo "Installation complete! Reboot now."
 
