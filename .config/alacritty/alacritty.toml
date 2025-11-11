@@ -1,0 +1,14 @@
+[font]
+size = 12
+
+[font.normal]
+family = "TerminessNerdFont"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[colors.primary]
+background = "#141414"
+
+[window]
+opacity = 0.90
