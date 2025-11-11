@@ -51,6 +51,6 @@ alias conf='vim /home/d/.config/i3/config'
 alias c='startx'
 alias t='echo '' && date && echo '' && cal -m' 
 
-PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
+#PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 PS1='😺 '
 #PS1=' $(date +"%T") \$ '
