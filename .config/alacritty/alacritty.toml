@@ -2,7 +2,7 @@
 size = 12
 
 [font.normal]
-family = "TerminessNerdFont"
+family = "Terminus"
 
 [cursor]
 style = { shape = "Block", blinking = "On" }
