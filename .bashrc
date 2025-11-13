@@ -53,5 +53,6 @@ alias t='echo '' && date && echo '' && cal -m'
 
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
+echo
 PS1='😺 '
 #PS1=' $(date +"%T") \$ '
