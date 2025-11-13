@@ -5,7 +5,7 @@ bar {
 	height 28
 	separator_symbol " "
 	font pango:Terminus 20
-	position top
+	position bottom
         status_command i3status 
 	colors { background #0c0c0c90 
 		 statusline #ffa800 

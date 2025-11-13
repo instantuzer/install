@@ -12,3 +12,4 @@ background = "#141414"
 
 [window]
 opacity = 0.90
+padding = { x = 58, y = 58 }
