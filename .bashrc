@@ -59,5 +59,6 @@ PS1='😺 '
 
 source <(fzf --bash)
 alias find='fzf --preview="bat --color=always {}"'
+alias vam='vim $(fzf --preview="bat --color=always {}")'
 eval "$(zoxide init bash)"
 alias cd='z'
