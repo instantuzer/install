@@ -3,16 +3,15 @@
 #
 
 if [[ "$(tty)" =~ ^/dev/tty[1-6]$ ]]; then
-
 setfont ter-132n
 btop -t -u 100
-
 fi
-
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
  
+#### pacman ####
+
 alias is='sudo pacman -S'
 alias ss='sudo pacman -Ss'
 alias qs='sudo pacman -Qs'
@@ -23,12 +22,8 @@ alias si='sudo pacman -Si'
 alias qe='sudo pacman -Qe'
 alias qqe='sudo pacman -Qqe'
 
-alias cls='clear'
-alias clr='clear'
+#### git ####
 
-alias a='cat ~/.bashrc'
-alias k='cat /home/d/.config/i3/config | grep'
-alias wk='/home/d/.config/i3/wttr.sh'
 alias gy='git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
 alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
 alias push='git add . && git commit -m "." && git push'
@@ -36,8 +31,13 @@ alias pp='cd ~/lol && git add . && git commit -m "." && git push'
 alias gs='git status'
 alias gl='git show --name-only'
 alias gb='git blame $(fzf)'
-alias sto='stow --adopt --no-folding .'
 alias resto='git restore .'
+
+alias sto='stow --adopt --no-folding .'
+
+alias a='cat ~/.bashrc'
+alias k='cat /home/d/.config/i3/config | grep'
+alias wk='/home/d/.config/i3/wttr.sh'
 
 alias ls='eza -la'
 alias cl='read -rp "FILENAME: " CLIP && cat $CLIP | xclip -selection clipboard'
@@ -53,10 +53,8 @@ alias conf='vim /home/d/.config/i3/config'
 alias c='startx'
 alias t='echo '' && date && echo '' && cal -m' 
 
-#PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
-t
-PS1='\n \[\e[38;5;214m\]$(pwd) \n\n 😺 '
-#PS1=' $(date +"%T") \$ '
+alias cls='clear'
+alias clr='clear'
 
 alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
@@ -66,3 +64,8 @@ alias f='fzf --preview="bat --color=always {}"'
 alias vam='vim $(fzf --preview="bat --color=always {}")'
 eval "$(zoxide init bash)"
 alias cd='z'
+
+#PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
+t
+PS1='\n \[\e[38;5;214m\]$(pwd) \n\n 😺 '
+#PS1=' $(date +"%T") \$ '
