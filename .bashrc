@@ -2,6 +2,9 @@
 # ~/.bashrc
 #
 
+eval "$(zoxide init bash)"
+source <(fzf --bash)
+
 if [[ "$(tty)" =~ ^/dev/tty[1-6]$ ]]; then
 setfont ter-132n
 btop -t -u 100
@@ -27,6 +30,10 @@ alias qqe='sudo pacman -Qqe'
 alias gy='git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
 alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
 alias push='git add . && git commit -m "." && git push'
+puzh() {
+    local dir="${1:-~/lol}"
+    cd "$dir" && git add . && git commit -m "." && git push
+}
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
 alias gs='git status'
 alias gl='git show --name-only'
@@ -35,7 +42,7 @@ alias resto='git restore .'
 
 alias sto='stow --adopt --no-folding .'
 
-alias a='cat ~/.bashrc'
+alias cb='cat ~/.bashrc'
 alias k='cat /home/d/.config/i3/config | grep'
 alias wk='/home/d/.config/i3/wttr.sh'
 
@@ -45,7 +52,7 @@ alias hi='history'
 alias find='fzf'
 alias se="sudoedit"
 alias vi='vim'
-alias vim='vim'
+alias nvim='vim'
 alias ff='fastfetch'
 alias b='btop -t'
 alias m='tmux'
@@ -62,12 +69,12 @@ alias sobash='source ~/.bashrc'
 alias f='fzf --preview="bat --color=always {}"'
 alias vam='vim $(fzf --preview="bat --color=always {}")'
 
-alias cd='z'
-eval "$(zoxide init bash)"
-source <(fzf --bash)
 
 #PS1="\u@\h \$ "
 #PS1=' $(date +"%T") \$ '
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
-PS1='\n \[\e[38;5;214m\]$(pwd) \n\n 😺 '
+PS1='\n \[\e[38;5;214m\]$PWD \n\n 😺 '
+#PS1='\n \[\e[38;5;214m\]%~\[\e[0m\] \n\n 😺 '
+
+

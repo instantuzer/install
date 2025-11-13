@@ -154,16 +154,20 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+for_window [class=".*"] border pixel 8
+client.focused #ffa80001 #00000099 #ffa800 #2e9ef3 #000000
+client.unfocused #00000001 #00000010 #ffffff80 #2e9ef3 #00000090
+client.focused_inactive #333333 #5f676a #0c0c0c #484e50 #333333
 default_border pixel 4
 default_floating_border normal 
 hide_edge_borders smart
 #gaps inner 2
-gaps outer 2
+gaps outer 4
 floating_modifier $mod
 workspace_auto_back_and_forth yes
 #focus_on_window_activation none
 #no_focus [all]
-#font pango:Terminus 18
+font pango:Terminus 20
 
 set $mod Mod1
 set $refresh_i3status killall -SIGUSR1 i3status
