@@ -18,6 +18,7 @@ fi
 alias vam='vim $(fzf --preview="bat --color=always {}")'
 
 alias f='fzf --preview="bat --color=always {}"'
+alias bt='systemctl start bluetooth'
 
 #### pacman ####
 
@@ -41,6 +42,7 @@ alias gs='git status'
 alias gl='git show --name-only'
 alias gb='git blame $(fzf)'
 alias resto='git restore .'
+alias gn='gh repo create --private --source=. --remote=origin'
 
 alias sto='stow --adopt --no-folding .'
 
@@ -61,6 +63,7 @@ alias m='tmux'
 alias conf='vim /home/d/.config/i3/config'
 alias c='startx'
 alias t='echo '' && date && echo '' && cal -m' 
+alias zl='unzip -l'
 
 alias cls='clear'
 alias clr='clear'
