@@ -56,3 +56,6 @@ t
 echo
 PS1='😺 '
 #PS1=' $(date +"%T") \$ '
+
+eval "$(zoxide init bash)"
+alias cd='z'
