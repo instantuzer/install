@@ -1,24 +1,25 @@
 
 bar {
-	i3bar_command i3bar -t
-	output eDP1
-	height 28
-	separator_symbol " "
-	font pango:Terminus 20
-	position bottom
-        status_command i3status 
-	colors { background #0c0c0c90 
-		 statusline #ffa800 
-	}
+    output eDP1
+    height 28
+    separator_symbol " "
+    font pango:Terminus 20
+    position bottom
+    status_command i3status
+
+    colors {
+        background #0c0c0c
+        statusline #ffa800
+    }
 }
 
 #bar {
-#	output HDMI-1
-#	height 35
-#	status_command i3status 
-#	separator_symbol " "
-#	font pango:monospace 12
-#	position top
+#    output HDMI-1
+#    height 35
+#    status_command i3status 
+#    separator_symbol " "
+#    font pango:monospace 12
+#    position top
 #}
 
 bindsym $mod+b bar mode toggle
@@ -154,10 +155,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-for_window [class=".*"] border pixel 8
-client.focused #ffa80001 #00000099 #ffa800 #2e9ef3 #00000001
-client.unfocused #00000001 #00000010 #ffffff80 #2e9ef3 #00000090
-#client.focused_inactive #333333 #5f676a #0c0c0c #484e50 #333333
 default_border pixel 4
 default_floating_border normal 
 hide_edge_borders smart
