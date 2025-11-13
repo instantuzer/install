@@ -4,8 +4,9 @@ size = 12
 [font.normal]
 family = "Terminus"
 
-[cursor]
-style = { shape = "Block", blinking = "On" }
+[cursor.style]
+shape = "Block"
+blinking = "On" 
 
 [colors.primary]
 background = "#141414"
