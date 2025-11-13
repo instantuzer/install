@@ -27,7 +27,7 @@ alias cls='clear'
 alias clr='clear'
 
 alias a='cat ~/.bashrc'
-alias key='cat /home/d/.config/i3/config | grep'
+alias k='cat /home/d/.config/i3/config | grep'
 alias wk='/home/d/.config/i3/wttr.sh'
 alias gy='git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
 alias gi='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
@@ -53,9 +53,11 @@ alias t='echo '' && date && echo '' && cal -m'
 
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
-echo
-PS1='😺 '
+PS1='\n \[\e[38;5;214m\]$(pwd) \n\n 😺 '
 #PS1=' $(date +"%T") \$ '
+
+alias bash='vim ~/.bashrc'
+alias sobash='source ~/.bashrc'
 
 source <(fzf --bash)
 alias find='fzf --preview="bat --color=always {}"'
