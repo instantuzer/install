@@ -30,10 +30,11 @@ alias a='cat ~/.bashrc'
 alias k='cat /home/d/.config/i3/config | grep'
 alias wk='/home/d/.config/i3/wttr.sh'
 alias gy='git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
-alias gi='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
+alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
 alias push='git add . && git commit -m "." && git push'
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
 alias gs='git status'
+alias gss='git show --name-only'
 alias sto='stow --adopt --no-folding .'
 alias resto='git restore .'
 
@@ -56,7 +57,7 @@ t
 PS1='\n \[\e[38;5;214m\]$(pwd) \n\n 😺 '
 #PS1=' $(date +"%T") \$ '
 
-alias bash='vim ~/.bashrc'
+alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
 
 source <(fzf --bash)
