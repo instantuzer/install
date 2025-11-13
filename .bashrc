@@ -35,13 +35,14 @@ alias push='git add . && git commit -m "." && git push'
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
 alias gs='git status'
 alias gss='git show --name-only'
+alias gb='git blame $(fzf)'
 alias sto='stow --adopt --no-folding .'
 alias resto='git restore .'
 
 alias ls='eza -la'
 alias cl='read -rp "FILENAME: " CLIP && cat $CLIP | xclip -selection clipboard'
 alias hi='history'
-alias f='fzf'
+alias find='fzf'
 alias se="sudoedit"
 alias vi='vim'
 alias vim='vim'
@@ -61,7 +62,7 @@ alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
 
 source <(fzf --bash)
-alias find='fzf --preview="bat --color=always {}"'
+alias f='fzf --preview="bat --color=always {}"'
 alias vam='vim $(fzf --preview="bat --color=always {}")'
 eval "$(zoxide init bash)"
 alias cd='z'
