@@ -59,13 +59,15 @@ alias clr='clear'
 alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
 
-source <(fzf --bash)
 alias f='fzf --preview="bat --color=always {}"'
 alias vam='vim $(fzf --preview="bat --color=always {}")'
-eval "$(zoxide init bash)"
-alias cd='z'
 
+alias cd='z'
+eval "$(zoxide init bash)"
+source <(fzf --bash)
+
+#PS1="\u@\h \$ "
+#PS1=' $(date +"%T") \$ '
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
 PS1='\n \[\e[38;5;214m\]$(pwd) \n\n 😺 '
-#PS1=' $(date +"%T") \$ '
