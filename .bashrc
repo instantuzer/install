@@ -57,5 +57,6 @@ echo
 PS1='😺 '
 #PS1=' $(date +"%T") \$ '
 
+source <(fzf --bash)
 eval "$(zoxide init bash)"
 alias cd='z'
