@@ -58,5 +58,6 @@ PS1='😺 '
 #PS1=' $(date +"%T") \$ '
 
 source <(fzf --bash)
+alias find='fzf --preview="bat --color=always {}"'
 eval "$(zoxide init bash)"
 alias cd='z'
