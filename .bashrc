@@ -16,6 +16,7 @@ fi
 #### main ####
 
 alias vam='vim $(fzf --preview="bat --color=always {}")'
+alias v='vim'
 
 alias f='fzf --preview="bat --color=always {}"'
 alias bt='systemctl start bluetooth'
@@ -70,6 +71,7 @@ alias clr='clear'
 
 alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
+
 
 #PS1="\u@\h \$ "
 #PS1=' $(date +"%T") \$ '
