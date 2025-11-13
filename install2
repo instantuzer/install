@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-reflector -c "nl" -p https --age 4 --latest 15 --save /etc/pacman.d/mirrorlist
+read -rp "COUNTRY: " CNTRY
+reflector -c "$CNTRY" -p https --age 4 --latest 15 --save /etc/pacman.d/mirrorlist
 cat /etc/pacman.d/mirrorlist
 
 echo
@@ -10,9 +11,9 @@ lsblk
 
 echo
 
-HDD=nvme0n1
-SIZE1=3
-SIZE2=275
+read -rp "HDD: " HDD
+read -rp "EFISIZE: " SIZE1
+read -rp "ROOTSIZE: " SIZE2
 
 read -rp "USERNAME: " USERNAME
 
@@ -29,22 +30,31 @@ while true; do
 done
 
 read -rp "REGION: " R
+read -rp "CITY: " C
 
 DISK="/dev/$HDD"
-
 echo "---->>> Installing to $DISK"
 echo "ALL DATA ON THIS DISK WILL BE ERASED!"
+read -rp "ARE YOU SURE? (y/n): " CONFIRM
+if [ "$CONFIRM" != "y" ]; then
+    echo "Installation aborted."
+    exit 1
+fi
+
 echo "Partitioning $DISK..."
-
 sgdisk -Z $DISK
-sgdisk -n 1::+3G -t 1:EF00 -c 1:"EFI" $DISK
-sgdisk -n 2::+275G -t 2:8300 -c 2:"ROOT" $DISK
+sgdisk -n 1::+${SIZE1}G -t 1:EF00 -c 1:"EFI" $DISK
+sgdisk -n 2::+${SIZE2}G -t 2:8300 -c 2:"ROOT" $DISK
 
-mkfs.fat ${DISK}p1
-mkfs.ext4 -F ${DISK}p2
+lsblk
 
-mount ${DISK}p2 /mnt
-mount -m ${DISK}p1 /mnt/boot
+read -rp "EXT:" EXT
+
+mkfs.fat ${DISK}${EXT}1
+mkfs.ext4 -F ${DISK}${EXT}2
+
+mount ${DISK}${EXT}2 /mnt
+mount -m ${DISK}${EXT}1 /mnt/boot
 
 pacstrap /mnt base linux linux-firmware-intel linux-zen intel-ucode
 
@@ -68,7 +78,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable NetworkManager
 echo "lol" >> /etc/hostname
-ln -sf /usr/share/zoneinfo/$R /etc/localtime
+ln -sf /usr/share/zoneinfo/$R/$C /etc/localtime
 hwclock --systohc
 
 su - $USERNAME -c 'mkdir lol && cd lol && git clone https://github.com/instantuzer/install . && stow --no-folding --adopt . && git restore .'
