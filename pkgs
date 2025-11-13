@@ -51,7 +51,6 @@ intel-gmmlib
 vulkan-intel
 bluez
 bluez-utils
-picom
 feh
 engrampa
 zoxide

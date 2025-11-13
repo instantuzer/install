@@ -13,6 +13,12 @@ fi
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
  
+#### main ####
+
+alias vam='vim $(fzf --preview="bat --color=always {}")'
+
+alias f='fzf --preview="bat --color=always {}"'
+
 #### pacman ####
 
 alias is='sudo pacman -S'
@@ -30,10 +36,6 @@ alias qqe='sudo pacman -Qqe'
 alias gy='git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
 alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
 alias push='git add . && git commit -m "." && git push'
-puzh() {
-    local dir="${1:-~/lol}"
-    cd "$dir" && git add . && git commit -m "." && git push
-}
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
 alias gs='git status'
 alias gl='git show --name-only'
@@ -43,7 +45,7 @@ alias resto='git restore .'
 alias sto='stow --adopt --no-folding .'
 
 alias cb='cat ~/.bashrc'
-alias k='cat /home/d/.config/i3/config | grep'
+alias key='cat /home/d/.config/i3/config | grep'
 alias wk='/home/d/.config/i3/wttr.sh'
 
 alias ls='eza -la'
@@ -66,15 +68,8 @@ alias clr='clear'
 alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
 
-alias f='fzf --preview="bat --color=always {}"'
-alias vam='vim $(fzf --preview="bat --color=always {}")'
-
-
 #PS1="\u@\h \$ "
 #PS1=' $(date +"%T") \$ '
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
 PS1='\n \[\e[38;5;214m\]$PWD 😺  '
-#PS1='\n \[\e[38;5;214m\]%~\[\e[0m\] \n\n 😺 '
-
-
