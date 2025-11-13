@@ -58,7 +58,8 @@ alias b='btop -t'
 alias m='tmux'
 alias conf='vim /home/d/.config/i3/config'
 alias c='startx'
-alias t='echo '' && date && echo '' && cal -m' 
+#alias t='echo '' && date && echo '' && cal -m' 
+t() { echo; date; echo; cal -m; }
 
 alias cls='clear'
 alias clr='clear'

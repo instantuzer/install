@@ -1,6 +1,6 @@
 
 bar {
-#	i3bar_command i3bar -t
+	i3bar_command i3bar -t
 	output eDP1
 	height 28
 	separator_symbol " "
@@ -155,9 +155,9 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 for_window [class=".*"] border pixel 8
-client.focused #ffa80001 #00000099 #ffa800 #2e9ef3 #000000
+client.focused #ffa80001 #00000099 #ffa800 #2e9ef3 #00000010
 client.unfocused #00000001 #00000010 #ffffff80 #2e9ef3 #00000090
-client.focused_inactive #333333 #5f676a #0c0c0c #484e50 #333333
+#client.focused_inactive #333333 #5f676a #0c0c0c #484e50 #333333
 default_border pixel 4
 default_floating_border normal 
 hide_edge_borders smart
