@@ -58,8 +58,7 @@ alias b='btop -t'
 alias m='tmux'
 alias conf='vim /home/d/.config/i3/config'
 alias c='startx'
-#alias t='echo '' && date && echo '' && cal -m' 
-t() { echo; date; echo; cal -m; }
+alias t='echo '' && date && echo '' && cal -m' 
 
 alias cls='clear'
 alias clr='clear'
@@ -75,7 +74,7 @@ alias vam='vim $(fzf --preview="bat --color=always {}")'
 #PS1=' $(date +"%T") \$ '
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
-PS1='\n \[\e[38;5;214m\]$PWD \n\n 😺 '
+PS1='\n \[\e[38;5;214m\]$PWD 😺  '
 #PS1='\n \[\e[38;5;214m\]%~\[\e[0m\] \n\n 😺 '
 
 
