@@ -83,7 +83,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%-
 bindsym Ctrl+Shift+y exec --no-startup-id xset s on +dpms
 bindsym Ctrl+Shift+g exec --no-startup-id xset s off -dpms
 
-bindsym $mod+KP_Add exec --no-startup-id i3lock -f -p win -c 000000
+bindsym $mod+KP_Add exec --no-startup-id i3lock -f -p win -c 000000 -i ~/lol/bg.jpg
 bindsym $mod+space exec --no-startup-id i3lock -f -p win -c 000000 
 bindsym XF86AudioPlay exec --no-startup-id i3lock -f -p win -c 000000 && systemctl suspend
 
