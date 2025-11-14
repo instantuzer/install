@@ -1,5 +1,6 @@
 
 bar {
+    #i3bar_command i3bar -t
     output eDP1
     height 28
     separator_symbol " "
