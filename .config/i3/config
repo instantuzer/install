@@ -75,7 +75,7 @@ exec_always --no-startup-id redshift -P -O 4000
 bindsym $mod+n exec --no-startup-id feh --bg-scale ~/lol/bg.png
 bindsym $mod+h exec --no-startup-id pkill feh & xsetroot -solid "#0c0c0c"
 
-bindsym $mod+u exec --no-startup-id xcalc
+bindsym $mod+u exec --no-startup-id xcalc -bg black -fg grey -bd grey
 bindsym $mod+y exec firefox --new-window youtube.com
 #bindsym $mod+y exec --no-startup-id pkill picom
 #bindsym $mod+u exec --no-startup-id picom &
@@ -158,6 +158,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+for_window [class="XCalc"] floating enable, resize set 500 600, move position 1400px 30px
 default_border pixel 4
 default_floating_border normal 
 hide_edge_borders smart
