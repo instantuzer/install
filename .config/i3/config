@@ -75,9 +75,10 @@ exec_always --no-startup-id redshift -P -O 4000
 bindsym $mod+n exec --no-startup-id feh --bg-scale ~/lol/bg.png
 bindsym $mod+h exec --no-startup-id pkill feh & xsetroot -solid "#0c0c0c"
 
-bindsym $mod+u exec --no-startup-id picom &
-#bindsym $mod+y exec --no-startup-id pkill picom
+bindsym $mod+u exec --no-startup-id xcalc
 bindsym $mod+y exec firefox --new-window youtube.com
+#bindsym $mod+y exec --no-startup-id pkill picom
+#bindsym $mod+u exec --no-startup-id picom &
 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 15%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%-
