@@ -36,7 +36,8 @@ bar {
 bindsym $mod+b bar mode toggle
 bindsym $mod+c kill
 
-bindsym XF86AudioStop exec --no-startup-id systemctl reboot
+#bindsym XF86AudioStop exec --no-startup-id systemctl reboot
+bindsym XF86AudioStop exec "i3-nagbar -m 'Reboot the system now?' -b 'Reboot' 'systemctl reboot'
 bindsym KP_Add exec playerctl play-pause
 
 bindsym $mod+Return exec alacritty
@@ -68,6 +69,8 @@ bindsym $mod+x exec --no-startup-id xcolor >> lol.txt
 
 #### AUDIO ####
 
+# pact list short sinks
+
 bindsym Ctrl+Shift+k exec --no-startup-id pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo
 bindsym Ctrl+Shift+l exec --no-startup-id pactl set-source-mute v4l2_input.pci-0000_00_14.0-usb-0_7_1.0 1
 
@@ -79,6 +82,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 bindsym XF86AudioNext exec --no-startup-id pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo
 bindsym XF86AudioPrev exec --no-startup-id pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
+
+bindsym Shift+XF86AudioNext exec --no-startup-id pactl pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+bindsym Shift+XF86AudioPrev exec --no-startup-id pactl set-card-profile alsa_output.usb-Sony_Interactive_Entertainment_Wireless_Controller-00.analog-stereo
 
 #### MONITOR ####
 
