@@ -43,6 +43,7 @@ bindsym KP_Add exec playerctl play-pause
 bindsym $mod+Return exec alacritty
 bindsym $mod+w exec firefox
 bindsym $mod+g exec firefox --new-window grok.com
+bindsym $mod+y exec firefox --new-window https://www.youtube.com/playlist?list=LL
 bindsym $mod+Shift+w exec helium-browser
 bindsym $mod+Shift+g exec helium-browser --new-window grok.com
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme gruvbox-dark
@@ -95,7 +96,6 @@ bindsym $mod+h exec --no-startup-id pkill feh & xsetroot -solid "#0c0c0c"
 
 bindsym $mod+u exec --no-startup-id xcalc -bg black -fg grey -bd grey
 #bindsym $mod+Shift+u exec --no-startup-id xcalc -bg black -fg grey -bd grey
-bindsym $mod+y exec firefox --new-window https://www.youtube.com/playlist?list=LL
 #bindsym $mod+y exec --no-startup-id pkill picom
 #bindsym $mod+u exec --no-startup-id picom &
 
