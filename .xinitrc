@@ -4,7 +4,7 @@ xset b off
 export EDITOR=vim
 export BROWSER=firefox
 export GTK_THEME=Adwaita:dark
-#export GTK_ICON_THEME=Papirus
+#export GTK_ICON_THEME=Papirus-Dark
 export XDG_CURRENT_DESKTOP=i3
 export XDG_SESSION_DESKTOP=i3
 export XDG_SESSION_TYPE=x11
