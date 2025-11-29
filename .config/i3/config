@@ -45,7 +45,8 @@ bindsym $mod+w exec firefox
 bindsym $mod+g exec firefox --new-window grok.com
 bindsym $mod+Shift+g exec firefox --new-window chatgpt.com
 bindsym $mod+y exec firefox --new-window https://www.youtube.com/playlist?list=LL
-bindsym $mod+Shift+w exec helium-browser
+#bindsym $mod+Shift+w exec helium-browser
+bindsym $mod+Shift+w exec firefox --new-window maps.google.com
 #bindsym $mod+Shift+g exec helium-browser --new-window grok.com
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme gruvbox-dark
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
