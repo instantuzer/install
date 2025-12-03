@@ -67,6 +67,7 @@ mount ${DISK}p2 /mnt
 mount -m ${DISK}p1 /mnt/boot
 
 timedatectl set-timezone $R
+pacman-key --init
 
 pacstrap /mnt base linux linux-zen linux-firmware-intel intel-ucode
 
