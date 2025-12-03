@@ -1,0 +1,200 @@
+bindsym Mod1+Shift+minus move scratchpad
+bindsym Mod1+minus scratchpad show
+
+exec --no-startup-id xss-lock -l -- i3lock -n -k -f -p win -c 000000 &
+exec --no-startup-id picom -b
+exec --no-startup-id feh --bg-scale ~/lol/bg.png
+exec --no-startup-id i3-msg "workspace 1; exec alacritty -e btop -t -u 100" && \
+					 i3-msg "workspace 3; exec alacritty"
+
+font pango:Terminus 20
+
+bar {
+    #i3bar_command i3bar -t
+	#font pango:monospace 12
+    output eDP1
+    height 28
+    separator_symbol " "
+    position bottom
+    status_command i3status
+
+    colors {
+        background #0c0c0c
+        statusline #ffa800
+    }
+}
+
+#bar {
+#    output HDMI-1
+#    height 35
+#    status_command i3status
+#    separator_symbol " "
+#    font pango:monospace 12
+#    position top
+#}
+
+bindsym $mod+b bar mode toggle
+bindsym $mod+c kill
+
+#bindsym XF86AudioStop exec --no-startup-id systemctl reboot
+bindsym XF86AudioStop exec "i3-nagbar -m 'Reboot the system now?' -b 'Reboot' 'systemctl reboot'
+bindsym KP_Add exec playerctl play-pause
+
+bindsym $mod+Return exec alacritty
+bindsym $mod+w exec firefox
+bindsym $mod+g exec firefox --new-window grok.com
+bindsym $mod+Shift+g exec firefox --new-window chatgpt.com
+bindsym $mod+y exec firefox --new-window https://www.youtube.com/playlist?list=LL
+#bindsym $mod+Shift+w exec helium-browser
+bindsym $mod+Shift+w exec firefox --new-window maps.google.com
+#bindsym $mod+Shift+g exec helium-browser --new-window grok.com
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme gruvbox-dark
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+
+bindsym $mod+Right focus right
+
+bindsym $mod+KP_Enter exec --no-startup-id alacritty -e sh -c "systemctl start bluetoothctl" & sleep 5 && alacritty --hold -e sh -c "bluetoothctl"
+bindsym Ctrl+slash exec --no-startup-id xinput set-prop "ELAN469D:00 04F3:304B Touchpad" "libinput Tapping Enabled" 1 && setxkbmap -option caps:escape_shifted_capslock
+
+bindsym $mod+e exec caja
+bindsym $mod+q exec yazi
+bindsym $mod+v exec eom
+bindsym $mod+i exec --no-startup-id alacritty -e ~/.config/i3/wttr3
+bindsym $mod+Shift+i exec --no-startup-id alacritty -e ~/.config/i3/wttr2
+bindsym $mod+o exec --no-startup-id exec alacritty -e sh -c "curl wttr.in/Rijswijk?2 && read -n 1"
+bindsym $mod+u exec --no-startup-id mate-calc
+
+bindsym $mod+semicolon fullscreen toggle
+bindsym $mod+z floating toggle
+
+bindsym $mod+a focus left
+bindsym $mod+k focus right
+
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+x exec --no-startup-id xcolor >> lol.txt
+
+#### AUDIO ####
+
+# pact list short sinks
+
+bindsym Ctrl+Shift+k exec --no-startup-id pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo
+bindsym Ctrl+Shift+l exec --no-startup-id pactl set-source-mute v4l2_input.pci-0000_00_14.0-usb-0_7_1.0 1
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym KP_Subtract exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym XF86AudioNext exec --no-startup-id pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo+input:analog-stereo
+bindsym XF86AudioPrev exec --no-startup-id pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
+
+bindsym Shift+XF86AudioNext exec --no-startup-id pactl pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+bindsym Shift+XF86AudioPrev exec --no-startup-id pactl set-card-profile alsa_output.usb-Sony_Interactive_Entertainment_Wireless_Controller-00.analog-stereo
+
+#### MONITOR ####
+
+exec_always --no-startup-id redshift -P -O 4000
+
+bindsym $mod+n exec --no-startup-id feh --bg-scale ~/lol/bg.png
+bindsym $mod+h exec --no-startup-id pkill feh & xsetroot -solid "#0c0c0c"
+
+bindsym $mod+Shift+u exec --no-startup-id redshift -P -O 4000
+#bindsym $mod+Shift+u exec --no-startup-id xcalc -bg black -fg grey -bd grey
+bindsym $mod+backslash exec --no-startup-id pkill picom
+#bindsym $mod+u exec --no-startup-id picom &
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 15%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%-
+
+bindsym Ctrl+Shift+y exec --no-startup-id xset s on +dpms
+bindsym Ctrl+Shift+g exec --no-startup-id xset s off -dpms
+
+bindsym $mod+KP_Add exec --no-startup-id i3lock -f -p win -c 000000 -i ~/lol/bg.png
+bindsym $mod+space exec --no-startup-id i3lock -f -p win -c 000000
+bindsym XF86AudioPlay exec --no-startup-id i3lock -f -p win -c 000000 && systemctl suspend
+
+bindsym $mod+p exec --no-startup-id xrandr --output eDP1 --off
+bindsym $mod+l exec --no-startup-id xrandr --output eDP1 --mode 1920x1080
+
+bindsym $mod+m layout default
+bindsym $mod+f layout toggle tabbed split
+
+#### MOUSE ####
+
+bindsym --whole-window button9 kill
+bindsym --whole-window button8 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+#### DEFAULT ####
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+mode "resize" {
+
+        bindsym Right       resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Left        resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Mod1+r mode "default"
+}
+
+bindsym Mod1+r mode "resize"
+
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+#### MAIN ####
+
+for_window [class="Mate-calc"] floating enable, resize set 500 900, move position 1400px 30px
+#for_window [class="mate-calc"] floating enable, resize set 500 900, move position 1400px 30px
+hide_edge_borders smart
+#gaps inner 2
+gaps outer 8
+floating_modifier $mod
+workspace_auto_back_and_forth yes
+#focus_on_window_activation none
+#no_focus [all]
+default_border pixel 4
+default_floating_border pixel 10
+
+set $mod Mod1
+set $refresh_i3status killall -SIGUSR1 i3status
