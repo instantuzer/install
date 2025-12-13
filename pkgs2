@@ -16,6 +16,9 @@ wayland
 #sway
 #swaybg
 #swaylock
+#swayidle
+#wmenu
+#foot
 #gvfs-daemons
 #gvfs
 #gvfs-mtp
