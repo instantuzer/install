@@ -1,9 +1,9 @@
 
-exec gammastep -O 4000
-exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+output eDP-1 scale 1
+output * bg ~/lol/bgx fill
+
 
 font pango:Terminus 20
-output eDP-1 scale 1.25
 
 bar {
 
@@ -21,15 +21,19 @@ bar {
 
 }
 
-exec swayidle -w \
-	timeout 1800 'swaylock -f' \
-	timeout 1805 'swaymsg "output * power off"' \
-		resume 'swaymsg "output * power on"'
+#exec swayidle -w \
+#	timeout 1800 'swaylock -f' \
+#	timeout 1805 'swaymsg "output * power off"' \
+#		resume 'swaymsg "output * power on"'
+exec gammastep -O 4000
+#exec_once gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+exec_always export GTK_THEME=Adwaita:dark
+exec_always export GTK4_THEME=Adwaita:dark
 
 
-
-input type:keyboard xkb_capslock enabled
-input type:keyboard xkb_numlock enabled
+#input type:keyboard xkb_capslock enabled
+#input type:keyboard xkb_numlock enabled
 
 set $mod Mod1
 set $menu wmenu-run
@@ -37,6 +41,10 @@ floating_modifier $mod
 
 input * {
     xkb_options caps:escape_shifted_capslock
+}
+
+input type:touchpad {
+    tap enabled
 }
 
 bindsym $mod+Return exec alacritty
