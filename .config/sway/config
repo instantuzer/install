@@ -32,6 +32,7 @@ input type:keyboard xkb_numlock enabled
 
 set $mod Mod1
 set $menu wmenu-run
+floating_modifier $mod
 
 input * {
     xkb_options caps:escape_shifted_capslock

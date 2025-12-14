@@ -42,7 +42,8 @@ alias qqe='sudo pacman -Qqe'
 
 #### git ####
 
-alias gy='git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
+alias gy='cd && git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
+alias gy='cd && git clone https://aur.archlinux.org/paru ; cd paru ; makepkg -si'
 alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
 alias push='git add . && git commit -m "." && git push'
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
@@ -51,10 +52,10 @@ alias gs='git show --name-only'
 alias gb='git blame --color-lines $(fzf)'
 alias gch='cd ~/lol & git log -p -U0 --no-prefix'
 alias god='git log -p  --unified=0 | grep -E '^-' | bat'
-alias resto='git restore .'
 alias gn='gh repo create --private --source=. --remote=origin'
 alias gl='git log -p --follow --'
 
+alias resto='git restore .'
 alias sto='stow --adopt --no-folding .'
 
 alias cb='cat ~/.bashrc'
