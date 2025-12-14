@@ -33,12 +33,19 @@ input type:keyboard xkb_numlock enabled
 set $mod Mod1
 set $menu wmenu-run
 
+input * {
+    xkb_options caps:escape_shifted_capslock
+}
+
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Return exec foot
 bindsym $mod+w exec firefox
 bindsym $mod+c kill
-bindsym $mod+d exec $menu
-#-show drun -show-icons -theme gruvbox-dark
+bindsym $mod+r exec $menu
+bindsym $mod+d exec wofi -show drun
+bindsym $mod+a focus left
+bindsym $mod+k focus right
+bindsym $mod+Right focus right
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
