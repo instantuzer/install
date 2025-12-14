@@ -43,7 +43,7 @@ alias qqe='sudo pacman -Qqe'
 #### git ####
 
 alias gy='cd && git clone https://aur.archlinux.org/yay ; cd yay ; makepkg -si'
-alias gy='cd && git clone https://aur.archlinux.org/paru ; cd paru ; makepkg -si'
+alias gp='cd && git clone https://aur.archlinux.org/paru ; cd paru ; makepkg -si'
 alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https://github.com/$REPO'
 alias push='git add . && git commit -m "." && git push'
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
