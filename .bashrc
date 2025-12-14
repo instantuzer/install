@@ -30,7 +30,7 @@ alias btc='bluetoothctl'
 
 #### pacman ####
 
-alias is='sudo pacman -S'
+alias is='sudo pacman -S --no-confirm --needed'
 alias ss='sudo pacman -Ss'
 alias qs='sudo pacman -Qs'
 alias ql='sudo pacman -Ql'
