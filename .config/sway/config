@@ -3,6 +3,7 @@ exec gammastep -O 4000
 exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
 
 font pango:Terminus 20
+output eDP-1 scale 1.25
 
 bar {
 
