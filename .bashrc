@@ -92,7 +92,7 @@ alias clr='clear'
 alias bsh='vim ~/.bashrc'
 alias sobash='source ~/.bashrc'
 
-#alias ipkg='grep -v '^\s*#' < read -rp "pkgname:" pkgsfile && cat pkgsfile | sudo pacman -S --needed -'
+#alias ipkg='grep -v '^\s*#' < read -rp "pkgname:" pkgsfile && cat pkgsfile | sudo pacman -S --needed --noconfirm -'
 alias ipkg='bash -c '\''read -rp "Package list file: " pkgsfile; grep -v "^[[:space:]]*#" "$pkgsfile" | sudo pacman -S --needed -'\'''
 
 #PS1="\u@\h \$ "
