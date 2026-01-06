@@ -38,6 +38,7 @@ alias up='sudo pacman -Syu --ignore appname'
 alias qi='sudo pacman -Qi'
 alias si='sudo pacman -Si'
 alias qe='sudo pacman -Qe'
+alias qo='sudo pacman -Qo'
 alias qqe='sudo pacman -Qqe'
 
 #### git ####
