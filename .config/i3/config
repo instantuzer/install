@@ -22,6 +22,19 @@ bar {
     }
 }
 
+bar {
+    output HDMI1
+    height 28
+    separator_symbol " "
+    position bottom
+    status_command i3status
+
+    colors {
+        background #0c0c0c
+        statusline #ffa800
+    }
+    }
+
 #bar {
 #    output HDMI-1
 #    height 35
