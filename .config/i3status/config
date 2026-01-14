@@ -36,5 +36,5 @@ format_percentage = "%.00f"
 }
 
 tztime local {
-format = "%d %H:%M "
+format = "%d. %H:%M "
 }
