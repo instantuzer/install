@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# --- CONFIG ---
+LOC_RW="Rijswijk"
+LOC_WK="Bleiswijk"
+
+# --- FUNCTIONS ---
+
+# Fetch Beaufort scale from km/h wind speed
+get_beaufort() {
+  local wind=$1
+  case $wind in
+    ''|*[!0-9]*) echo "" ;;  # not a number
+    *)
+      if   [ "$wind" -le 1 ];   then echo 0
+      elif [ "$wind" -le 5 ];   then echo 1
+      elif [ "$wind" -le 11 ];  then echo 2
+      elif [ "$wind" -le 19 ];  then echo 3
+      elif [ "$wind" -le 28 ];  then echo 4
+      elif [ "$wind" -le 38 ];  then echo 5
+      elif [ "$wind" -le 49 ];  then echo 6
+      elif [ "$wind" -le 61 ];  then echo 7
+      elif [ "$wind" -le 74 ];  then echo 8
+      elif [ "$wind" -le 88 ];  then echo 9
+      elif [ "$wind" -le 102 ]; then echo 10
+      elif [ "$wind" -le 117 ]; then echo 11
+      else echo 12
+      fi
+      ;;
+  esac
+}
+
+# Fetch price from Coinbase API
+get_price() {
+  local symbol=$1
+  local value
+  value=$(curl -s "https://api.coinbase.com/v2/prices/${symbol}-EUR/buy" | jq -r '.data.amount')
+  echo "$value"
+}
+
+# --- FETCH CRYPTO DATA ---
+ETHBASE=$(get_price "ETH" | cut -c1-4)
+DOGEBASE=$(get_price "DOGE" | cut -c1-4)
+BTCBASE_RAW=$(get_price "BTC")
+BTCBASE_RAW=$(echo "$BTCBASE_RAW" | awk '{print $1 + 0}')
+
+# Shorten BTC display depending on value
+if (( $(echo "$BTCBASE_RAW >= 100000" | bc -l) )); then
+  BTCBASE=$(echo "$BTCBASE_RAW" | cut -c1-3)
+else
+  BTCBASE=$(echo "$BTCBASE_RAW" | cut -c1-2)
+fi
+[ "$BTCBASE" = "0" ] && BTCBASE=""
+
+# --- FETCH WEATHER DATA ---
+WK_RAW=$(curl -s "wttr.in/${LOC_WK}?format=%c+%t+%w" | sed -E 's/\+//g; s/C[[:alpha:]]/C/; s/km\/h//')
+RW_RAW=$(curl -s "wttr.in/${LOC_RW}?format=%c+%t+%w" | sed -E 's/\+//g; s/C[[:alpha:]]/C/; s/km\/h//')
+
+# Extract wind values
+WIND_RW=$(echo "$RW_RAW" | grep -oP '\d+' | tail -1)
+WIND_WK=$(echo "$WK_RAW" | grep -oP '\d+' | tail -1)
+
+# Compute Beaufort scales
+BFT_RW=$(get_beaufort "$WIND_RW")
+BFT_WK=$(get_beaufort "$WIND_WK")
+
+# --- OUTPUT ---
+echo "WK ${WK_RAW:-WK} ${BFT_WK:-?} -- RW ${RW_RAW:-RW} ${BFT_RW:-?} --- ${DOGEBASE:-DOGE} ${ETHBASE:-ETH} ${BTCBASE:-BTC}"
+
+read -n 1 -s
+sleep 0.2
+
