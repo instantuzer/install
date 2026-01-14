@@ -1,9 +1,5 @@
 rofi
-powertop
 bind
-vlc
-mpv
-fastfetch
 xcolor
 xclip
 #noto-fonts-cjk
@@ -13,9 +9,7 @@ xclip
 feh
 imagemagick
 udisks2
-os-prober
 #picom
-eom
 mate-calc
 net-tools
 lsof
