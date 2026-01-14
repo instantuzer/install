@@ -49,7 +49,7 @@ alias gc='printf "name/name\nREPONAME: " && read -rp "" REPO  && git clone https
 alias push='git add . && git commit -m "." && git push'
 alias pp='cd ~/lol && git add . && git commit -m "." && git push'
 alias gst='git status'
-alias gs='git show --name-only'
+alias gs='cd ~/lol && git show --name-only'
 alias gb='git blame --color-lines $(fzf)'
 alias gch='cd ~/lol & git log -p -U0 --no-prefix'
 alias god='git log -p  --unified=0 | grep -E '^-' | bat'
