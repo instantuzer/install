@@ -5,6 +5,7 @@ git
 github-cli
 stow
 networkmanager
+inetutils
 base-devel
 xf86-video-intel
 libva-intel-driver

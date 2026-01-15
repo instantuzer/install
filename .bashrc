@@ -100,4 +100,4 @@ alias ipkg='bash -c '\''read -rp "Package list file: " pkgsfile; grep -v "^[[:sp
 #PS1=' $(date +"%T") \$ '
 #PS1='\[\e[38;5;214m\] $(date +"%T") \$ \[\e[0m\]'
 t
-PS1='\n \[\e[38;5;214m\]$PWD 😺  '
+PS1='\n$( [[ -n "$SSH_CONNECTION" ]] && echo "$(hostname -i)" )\[\e[38;5;214m\]$PWD 😺  '
