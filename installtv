@@ -71,17 +71,17 @@ read -n 1 -s -r -p "Press a key to continue..."
 echo
 echo
 
-cryptsetup luksFormat ${DISK}p2
-cryptsetup open ${DISK}p2 cryptroot
+cryptsetup luksFormat ${DISK}2
+cryptsetup open ${DISK}2 cryptroot
 
-mkfs.fat ${DISK}p1
+mkfs.fat ${DISK}1
 mkfs.ext4 /dev/mapper/cryptroot
 #mkfs.ext4 -F ${DISK}p4
-mkswap ${DISK}p3
-swapon ${DISK}p3
+mkswap ${DISK}3
+swapon ${DISK}3
 
 mount /dev/mapper/cryptroot /mnt
-mount -m ${DISK}p1 /mnt/boot
+mount -m ${DISK}1 /mnt/boot
 
 #timedatectl set-timezone $R
 #pacman-key --init
