@@ -1,6 +1,7 @@
 # xrandr --output HDMI1 --right-of e-DP1
 xsetroot -solid "#0c0c0c"
 xset b off
+export SUDO_EDITOR=vim
 export EDITOR=vim
 export VISUAL=vim
 export BROWSER=firefox
