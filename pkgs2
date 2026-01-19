@@ -2,6 +2,7 @@ rofi
 bind
 xcolor
 xclip
+man
 #noto-fonts-cjk
 #noto-fonts
 #ttf-terminus-nerd
