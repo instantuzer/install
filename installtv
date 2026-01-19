@@ -71,17 +71,17 @@ read -n 1 -s -r -p "Press a key to continue..."
 echo
 echo
 
-cryptsetup luksFormat ${DISK}p2
-cryptsetup open ${DISK}p2 cryptroot
+cryptsetup luksFormat ${DISK}2
+cryptsetup open ${DISK}2 cryptroot
 
-mkfs.fat ${DISK}p1
+mkfs.fat ${DISK}1
 mkfs.ext4 /dev/mapper/cryptroot
 #mkfs.ext4 -F ${DISK}p4
-mkswap ${DISK}p3
-swapon ${DISK}p3
+mkswap ${DISK}3
+swapon ${DISK}3
 
 mount /dev/mapper/cryptroot /mnt
-mount -m ${DISK}p1 /mnt/boot
+mount -m ${DISK}1 /mnt/boot
 
 #timedatectl set-timezone $R
 #pacman-key --init
@@ -119,7 +119,7 @@ echo "title TV" >> /boot/loader/entries/arch.conf
 echo "linux /vmlinuz-linux-zen" >> /boot/loader/entries/arch.conf
 echo "initrd /intel-ucode.img" >> /boot/loader/entries/arch.conf
 echo "initrd /initramfs-linux-zen.img" >> /boot/loader/entries/arch.conf
-echo "options cryptdevice=${DISK}p2:T-1000 root=/dev/mapper/T-1000 rw" >> /boot/loader/entries/arch.conf
+echo "options cryptdevice=${DISK}2:T-1000 root=/dev/mapper/T-1000 rw" >> /boot/loader/entries/arch.conf
 
 echo "8.8.8.8,1.1.1.1,2001:4860:4860::8888,2606:4700:4700::1111"
 
