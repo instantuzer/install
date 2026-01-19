@@ -125,7 +125,7 @@ bindsym Ctrl+Shift+g exec --no-startup-id xset s off -dpms
 
 bindsym $mod+KP_Add exec --no-startup-id i3lock -f -p win -c 000000 -i ~/lol/bg.png
 bindsym $mod+space exec --no-startup-id i3lock -f -p win -c 000000
-bindsym XF86AudioPlay exec --no-startup-id i3lock -f -p win -c 000000 && systemctl suspend
+bindsym XF86AudioPlay exec --no-startup-id systemctl suspend
 
 bindsym $mod+p exec --no-startup-id xrandr --output eDP1 --off && xset s on +dpms
 bindsym $mod+l exec --no-startup-id xrandr --output eDP1 --mode 1920x1080 && xset s on +dpms
