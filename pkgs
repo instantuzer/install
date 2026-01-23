@@ -9,8 +9,10 @@ inetutils
 usbutils
 base-devel
 # drivers
-xf86-video-intel
-libva-intel-driver
+#xf86-video-intel
+#libva-intel-driver
+#vulkan-intel
+#intel-gmmlib
 i3
 alacritty
 tmux
@@ -36,8 +38,6 @@ vim
 vi
 nano
 redshift
-intel-gmmlib
-vulkan-intel
 bluez
 bluez-utils
 engrampa
