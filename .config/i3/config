@@ -18,7 +18,8 @@ bar {
 
     colors {
         background #0c0c0c
-        statusline #ffa800
+        statusline #bfbfbf
+        focused_statusline #ffa800
     }
 }
 
