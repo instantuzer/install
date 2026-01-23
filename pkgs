@@ -8,6 +8,7 @@ networkmanager
 inetutils
 usbutils
 base-devel
+# drivers
 xf86-video-intel
 libva-intel-driver
 i3
