@@ -8,11 +8,16 @@ networkmanager
 inetutils
 usbutils
 base-devel
-# drivers
+# video
 #xf86-video-intel
 #libva-intel-driver
 #vulkan-intel
 #intel-gmmlib
+mesa
+vulkan-intel
+libva
+intel-media-driver
+# video
 i3
 alacritty
 tmux
