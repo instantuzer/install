@@ -10,7 +10,7 @@ font pango:Terminus 20
 bar {
     #i3bar_command i3bar -t
     #font pango:monospace 12
-    output eDP1
+    output eDP-1
     height 28
     separator_symbol " "
     position bottom

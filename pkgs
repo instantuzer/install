@@ -9,14 +9,13 @@ inetutils
 usbutils
 base-devel
 # video
-#xf86-video-intel
-#libva-intel-driver
-#vulkan-intel
-#intel-gmmlib
-mesa
+xf86-video-intel
+libva-intel-driver
 vulkan-intel
-libva
-intel-media-driver
+intel-gmmlib
+#mesa
+#libva
+#intel-media-driver
 # video
 i3
 alacritty
