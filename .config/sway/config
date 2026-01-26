@@ -4,10 +4,16 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+output eDP1 scale 1
+
+exec gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+font pango:Terminus 20
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -43,19 +49,24 @@ output * bg ~/bg.png fill
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
+
+input * {
+    xkb_options caps:escape_shifted_capslock
+}
+
 #
 # Example configuration:
 #
-#   input type:touchpad {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-#   input type:keyboard {
-#       xkb_layout "eu"
-#   }
+   input type:touchpad {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+   }
+
+   input type:keyboard {
+       xkb_layout "eu"
+   }
 #
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
@@ -68,7 +79,7 @@ output * bg ~/bg.png fill
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+c kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -225,7 +236,7 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
@@ -233,7 +244,7 @@ bar {
 
     colors {
         statusline #ffffff
-        background #323232
+        background #32323200
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
