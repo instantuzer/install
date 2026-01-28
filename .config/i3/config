@@ -45,8 +45,9 @@ bar {
 #    position top
 #}
 
-bindsym $mod+b bar mode toggle
-bindsym $mod+c kill
+#bindsym $mod+b bar mode toggle
+bindsym $mod+b --no-startup-id bluetoothctl power on
+bindsym $mod+c --no-startup-id kill
 
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme gruvbox-dark
 bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
@@ -112,7 +113,8 @@ bindsym Shift+XF86AudioPrev exec --no-startup-id pactl set-card-profile alsa_out
 
 exec_always --no-startup-id redshift -P -O 4000
 
-bindsym $mod+n exec --no-startup-id feh --bg-scale ~/lol/bg.png
+#bindsym $mod+n exec --no-startup-id feh --bg-scale ~/lol/bg.png
+bindsym $mod+n exec --no-startup-id bluetoothctl power off
 bindsym $mod+h exec --no-startup-id pkill feh & xsetroot -solid "#0c0c0c"
 
 bindsym $mod+Shift+u exec --no-startup-id redshift -P -O 4000
