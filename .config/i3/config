@@ -73,6 +73,8 @@ bindsym $mod+KP_Enter exec --no-startup-id alacritty -e sh -c "systemctl start b
 bindsym Ctrl+slash exec --no-startup-id xinput set-prop "ELAN469D:00 04F3:304B Touchpad" "libinput Tapping Enabled" 1 && setxkbmap -option caps:escape_shifted_capslock
 
 bindsym $mod+s exec shotgun
+bindsym $mod+Shift+s exec maim | xclip -selection clipboard -t image/png
+bindsym $mod+Ctrl+s exec maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+e exec caja
 bindsym $mod+q exec yazi
 bindsym $mod+v exec eom
