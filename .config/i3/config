@@ -72,6 +72,7 @@ bindsym $mod+Shift+w exec firefox --new-window maps.google.com
 bindsym $mod+KP_Enter exec --no-startup-id alacritty -e sh -c "systemctl start bluetoothctl" && alacritty --hold -e sh -c "bluetoothctl"
 bindsym Ctrl+slash exec --no-startup-id xinput set-prop "ELAN469D:00 04F3:304B Touchpad" "libinput Tapping Enabled" 1 && setxkbmap -option caps:escape_shifted_capslock
 
+bindsym $mod+s exec shotgun
 bindsym $mod+e exec caja
 bindsym $mod+q exec yazi
 bindsym $mod+v exec eom
