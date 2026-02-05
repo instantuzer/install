@@ -1,0 +1,90 @@
+#!/bin/bash
+
+ETHBASE=$(curl -s https://api.coinbase.com/v2/prices/ETH-EUR/buy | jq -r '.data.amount' | cut -c 1-4)
+BTCBASE_RAW=$(curl -s https://api.coinbase.com/v2/prices/BTC-EUR/buy | jq -r '.data.amount')
+BTCBASE_RAW=$(echo "$BTCBASE_RAW" | awk '{print $1 + 0}')
+DOGEBASE=$(curl -s https://api.coinbase.com/v2/prices/DOGE-EUR/buy | jq -r '.data.amount' | cut -c 1-4)
+
+WIND_SPEED=$(curl -s "wttr.in/Rijswijk?format=%w")
+WIND_SPEED_NUM=$(echo "$WIND_SPEED" | grep -oP '\d+')
+WK=$(curl -s "wttr.in/Bleiswijk?format=%c+%t+%w" | sed -E 's/\+//g; s/C[[:alpha:]]/C/; s/km\/h//')
+RW=$(curl -s "wttr.in/Rijswijk?format=%c+%t+%w" | sed -E 's/\+//g; s/C[[:alpha:]]/C/; s/km\/h//')
+
+if (( $(echo "$BTCBASE_RAW >= 100000" | bc -l) )); then
+  BTCBASE=$(echo "$BTCBASE_RAW" | cut -c 1-3)
+else
+  BTCBASE=$(echo "$BTCBASE_RAW" | cut -c 1-2)
+fi
+
+if (( $(echo "$BTCBASE == 0" ) )); then
+  BTCBASE=""
+fi
+
+if [ -n "$WIND_SPEED_NUM" ]; then
+	if [ "$WIND_SPEED_NUM" -le 1 ]; then
+    BFT="0"
+elif [ "$WIND_SPEED_NUM" -le 5 ]; then
+    BFT="1"
+elif [ "$WIND_SPEED_NUM" -le 11 ]; then
+    BFT="2"
+elif [ "$WIND_SPEED_NUM" -le 19 ]; then
+    BFT="3"
+elif [ "$WIND_SPEED_NUM" -le 28 ]; then
+    BFT="4"
+elif [ "$WIND_SPEED_NUM" -le 38 ]; then
+    BFT="5"
+elif [ "$WIND_SPEED_NUM" -le 49 ]; then
+    BFT="6"
+elif [ "$WIND_SPEED_NUM" -le 61 ]; then
+    BFT="7"
+elif [ "$WIND_SPEED_NUM" -le 74 ]; then
+    BFT="8"
+elif [ "$WIND_SPEED_NUM" -le 88 ]; then
+    BFT="9"
+elif [ "$WIND_SPEED_NUM" -le 102 ]; then
+    BFT="10"
+elif [ "$WIND_SPEED_NUM" -le 117 ]; then
+    BFT="11"
+else
+    BFT="12"
+fi
+else
+	:
+fi
+RAW_WIND=$(curl -s "wttr.in/Bleiswijk?format=%w")
+WIND_VALUE=$(echo "$RAW_WIND" | grep -oP '\d+')
+if [ -n "$WIND_VALUE" ]; then
+	if [ "$WIND_VALUE" -le 1 ]; then
+    BEAUFORT="0"
+elif [ "$WIND_VALUE" -le 5 ]; then
+    BEAUFORT="1"
+elif [ "$WIND_VALUE" -le 11 ]; then
+    BEAUFORT="2"
+elif [ "$WIND_VALUE" -le 19 ]; then
+    BEAUFORT="3"
+elif [ "$WIND_VALUE" -le 28 ]; then
+    BEAUFORT="4"
+elif [ "$WIND_VALUE" -le 38 ]; then
+    BEAUFORT="5"
+elif [ "$WIND_VALUE" -le 49 ]; then
+    BEAUFORT="6"
+elif [ "$WIND_VALUE" -le 61 ]; then
+    BEAUFORT="7"
+elif [ "$WIND_VALUE" -le 74 ]; then
+    BEAUFORT="8"
+elif [ "$WIND_VALUE" -le 88 ]; then
+    BEAUFORT="9"
+elif [ "$WIND_VALUE" -le 102 ]; then
+    BEAUFORT="10"
+elif [ "$WIND_VALUE" -le 117 ]; then
+    BEAUFORT="11"
+else
+    BEAUFORT="12"
+fi
+else
+	:
+fi
+    echo "WK "${WK:-WK}" "${BEAUFORT}" -- RW "${RW:-RW}" "${BFT}" --- ${DOGEBASE:-DOGE} ${ETHBASE:-ETH} "${BTCBASE:-BTC}""
+
+read -n 1
+sleep 0.2
