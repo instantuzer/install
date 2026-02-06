@@ -1,5 +1,10 @@
 #!/bin/bash
 
+while true; do
+
+if [ -n "$updates" ]; then     count=$(echo "$updates" | wc -l);     dunstify -u critical -r 9990 "pkgs ($count)" "\n$updates"; fi
+done
+
 BAT="/sys/class/power_supply/BAT0"
 NOTIF_ID=""
 
@@ -25,11 +30,6 @@ while true; do
             NOTIF_ID=""
         fi
     fi
-
-    if updates=$(pacman -Qu); then
-        [ -n "$updates" ] && dunstify -u critical -r 9990 "Pacman Updates Available" "$updates" || dunstify -u critical -r 9990 "Pacman" "System is up to date"
-    fi
-
 
     sleep 20
 done
