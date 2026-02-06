@@ -8,7 +8,7 @@ exec --no-startup-id i3-msg "workspace 3; exec alacritty"
 #exec --no-startup-id i3-msg "workspace 1; exec alacritty -e btop -t -u 100" && \
 #					 i3-msg "workspace 3; exec alacritty"
 
-font pango:Terminus 20
+font pango:Terminus 19
 
 bar {
     #i3bar_command i3bar -t
