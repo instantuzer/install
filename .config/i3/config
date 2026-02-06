@@ -14,7 +14,7 @@ bar {
     #i3bar_command i3bar -t
     #font pango:monospace 12
     output eDP1
-    height 35
+    height 37
     separator_symbol " "
     position bottom
     status_command i3status
