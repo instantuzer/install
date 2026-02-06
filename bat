@@ -26,9 +26,9 @@ while true; do
         fi
     fi
 
-if updates=$(pacman -Qu); then
-    [ -n "$updates" ] && dunstify -u critical -r 9990 "Pacman Updates Available" "$updates" || dunstify -u critical -r 9990 "Pacman" "System is up to date"
-fi
+    if updates=$(pacman -Qu); then
+        [ -n "$updates" ] && dunstify -u critical -r 9990 "Pacman Updates Available" "$updates" || dunstify -u critical -r 9990 "Pacman" "System is up to date"
+    fi
 
 
     sleep 20
