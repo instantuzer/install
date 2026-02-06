@@ -23,5 +23,7 @@ while true; do
     sleep 20
 done
 
+sleep 10
+
 updates=$(pacman -Qu)
 if [ -n "$updates" ]; then     count=$(echo "$updates" | wc -l);     dunstify -u critical -r 9990 "pkgs ($count)" "\n$updates"; fi
