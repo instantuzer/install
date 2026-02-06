@@ -1,0 +1,182 @@
+[4mdunst[24m(1)                 Dunst Reference                [4mdunst[24m(1)
+
+[1mNAME[0m
+       dunst - a customizable and lightweight
+       notification-daemon
+
+[1mSYNOPSIS[0m
+       dunst [-conf file] [-verbosity v] [-print]
+       [--startup_notification]
+
+[1mDESCRIPTION[0m
+       Dunst is a highly configurable and lightweight
+       notification daemon.
+
+   [1mAutostarting dunst[0m
+       On most installations, dunst should be able to
+       automatically be started by D-Bus when a notification is
+       sent. This is not recommended when multiple notification
+       daemons are installed, because D-Bus will not know which
+       one to start.  Other ways of autostarting dunst include
+       starting dunst with your desktop environment or window
+       manager's autostart functionality or via the provided
+       systemd service.
+
+[1mCOMMAND LINE OPTIONS[0m
+       [1m-h/-help/--help[0m
+           List all command line flags
+
+       [1m-conf/-config file[0m
+           Use alternative config file.  This disables the
+           search for other config files.  If it cannot be
+           opened, dunst will issue a warning and fall back on
+           its internal defaults.  (Hint: `dunst -conf -
+           </dev/null` can be used to enforce the defaults, i.e.
+           for testing)
+
+       [1m-v/-version/--version[0m
+           Print version information.
+
+       [1m-verbosity [22m(values: 'crit', 'warn', 'mesg', 'info',
+       'debug' default 'mesg')
+           Do not display log messages, which have lower
+           precedence than specified verbosity. This won't
+           affect printing notifications on the terminal. Use
+           the '-print' option for this.
+
+       [1m-print/--print[0m
+           Print notifications to stdout. This might be useful
+           for logging, setting up rules or using the output in
+           other scripts.
+
+       [1m-startup_notification/--startup_notification[0m
+           Display a notification on startup.
+
+   [1mDEPRECATED OPTIONS[0m
+       Old version of dunst allowed changing the colors of
+       different urgencies through command line options. This
+       has been long removed in favour of RULES, see issue #328.
+
+       [1m-li/ni/ci icon[0m
+           Set notification icon.
+
+       [1m-lf/nf/cf color[0m
+           Set notification foreground color.
+
+       [1m-lb/nb/cb color[0m
+           Set notification background color.
+
+       [1m-lh/nh/ch color[0m
+           Set notification highlight color.
+
+       [1m-lfr/nfr/cfr color[0m
+           Set notification frame color.
+
+       [1m-lto/nto/cto secs[0m
+           Set notification timeout time.
+
+[1mCONFIGURATION[0m
+       A default configuration file is included (usually
+       /etc/dunst/dunstrc) and serves as the least important
+       configuration file. Note: this was previously
+       /usr/share/dunst/dunstrc. You can edit this file to
+       change the system-wide defaults or copy it to a more
+       important location to override its settings. See the
+       FILES section for more details on where dunst searches
+       for its configuration files and how settings get applied.
+
+       See [1mdunst[22m(5) for all possible settings.
+
+   [1mNOTIFY-SEND HINTS[0m
+       Dunst is able to get different colors for a message via
+       notify-send.  In order to do that you have to add a hint
+       via the -h option.  The progress value can be set with a
+       hint, too.
+
+       See [1mdunst[22m(5) for the list of accepted hints.
+
+       Some examples:
+
+           notify-send -h string:fgcolor:#ff4444
+
+           notify-send -h string:bgcolor:#4444ff -h string:fgcolor:#ff4444 -h string:frcolor:#44ff44
+
+           notify-send -h int:value:42 "Working ..."
+
+[1mMISCELLANEOUS[0m
+       Dunst can be paused via the `dunstctl set-paused true`
+       command. To unpause dunst use `dunstctl set-paused
+       false`.  Another way is to send SIGUSR1 and SIGUSR2 to
+       pause and unpause respectively. Pausing using dunstctl is
+       recommended over using signals, because the meaning of
+       the signals isn't stable and might change in the future.
+
+       When paused, dunst won't display any notifications, but
+       keeps all notifications in a queue. This can for example
+       be wrapped around a screen locker (i3lock, slock) to
+       prevent flickering of notifications through the lock, and
+       to read all missed notifications after returning to the
+       computer.
+
+[1mFILES[0m
+       These are the base directories dunst searches for
+       configuration files in [4mdescending[24m [4morder[24m [4mof[24m [4mimportance[24m:
+
+       $XDG_CONFIG_HOME
+               This is the most important directory.
+               ("$HOME/.config" if unset or empty)
+
+       $XDG_CONFIG_DIRS
+               This, like $PATH for instance, is a :-separated
+               list of base directories in [4mdescending[24m [4morder[24m [4mof[0m
+               [4mimportance[24m.  ([4m/etc[24m if unset or empty)
+
+       Dunst will search these directories for the following
+       relative file paths:
+
+       [4mdunst/dunstrc[0m
+               This is the base config and as such the least
+               important in a particular base directory.
+
+       [4mdunst/dunstrc.d/*.conf[0m
+               These are "drop-ins" (mind the ".d" suffix of the
+               directory).  They are more important than the
+               base dunstrc in the parent directory, as they are
+               considered to be small snippets to override
+               settings.  The last in lexical order is the most
+               important one, so you can easily change the order
+               by renaming them.  A common approach to naming
+               drop-ins is to prefix them with numbers, i.e.:
+
+                   00-least-important.conf
+                   01-foo.conf
+                   20-bar.conf
+                   99-most-important.conf
+
+               Only files with the [1m.conf [22msuffix will be read.
+
+       Only settings from the last base config the corresponding
+       drop-ins get applied.  So if a dunstrc is first found in
+       [4m~/.config/dunst/dunstrc[24m, drop-ins will be searched in
+       [4m~/.config/dunst/dunstrc.d/*[24m. Settings in more important
+       files override those in less important ones.
+
+[1mAUTHORS[0m
+       Written by Sascha Kruse <knopwob@googlemail.com>
+
+[1mREPORTING BUGS[0m
+       Bugs and suggestions should be reported on GitHub at
+       https://github.com/dunst-project/dunst/issues
+
+[1mCOPYRIGHT[0m
+       Copyright 2013 Sascha Kruse and contributors (see LICENSE
+       for licensing information)
+
+       If you feel that copyrights are violated, please send me
+       an email.
+
+[1mSEE ALSO[0m
+       [1mdunst[22m(5), [1mdunstctl[22m(1), [1mdmenu[22m(1), [1mnotify-send[22m(1),
+       [1mdunstify[22m(1)
+
+1.13.0 (2025-08-04)        2025-08-31                   [4mdunst[24m(1)
