@@ -1,5 +1,6 @@
 exec --no-startup-id xss-lock -l -- i3lock -n -k -f -p win -c 000000 &
 exec --no-startup-id dunst
+exec --no-startup-id bat
 exec --no-startup-id nm-applet
 exec --no-startup-id i3-msg "workspace 3; exec alacritty"
 #exec --no-startup-id picom -b
