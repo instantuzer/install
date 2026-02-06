@@ -1,13 +1,30 @@
-BATTERY="/sys/class/power_supply/BAT0"
+#!/bin/bash
+
+BAT="/sys/class/power_supply/BAT0"
+NOTIF_ID=""
 
 while true; do
-    PERC=$(cat "$BATTERY/capacity")
-    STATUS=$(cat "$BATTERY/status")
+    PERC=$(cat $BAT/capacity)
+    STATUS=$(cat $BAT/status)
 
-    # Only notify when discharging and below 15%
-    if [[ "$STATUS" == "Discharging" && "$PERC" -le 15 ]]; then
-        notify-send -u critical -i battery-empty "Battery Low" "$PERC% remaining!"
+    if [[ "$STATUS" == "Charging" ]]; then
+        # Close the previous critical notification
+        if [[ -n "$NOTIF_ID" ]]; then
+            dunstctl close "$NOTIF_ID"
+            NOTIF_ID=""
+        fi
+    elif [[ "$PERC" -lt 20 ]]; then
+        # Send a critical notification if not already sent
+        if [[ -z "$NOTIF_ID" ]]; then
+            NOTIF_ID=$(dunstify -u critical -r 9999 "Battery Low" "Battery is at ${PERC}%")
+        fi
+    else
+        # Battery above 20%: clear previous critical notification
+        if [[ -n "$NOTIF_ID" ]]; then
+            dunstctl close "$NOTIF_ID"
+            NOTIF_ID=""
+        fi
     fi
 
-    sleep 20  # check every 20 seconds
+    sleep 60
 done
