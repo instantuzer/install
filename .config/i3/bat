@@ -1,13 +1,5 @@
 #!/bin/bash
 
-while true; do
-updates=$(pacman -Qu)
-if [ -n "$updates" ]; then     count=$(echo "$updates" | wc -l);     dunstify -u critical -r 9990 "pkgs ($count)" "\n$updates"; fi
-
-sleep 60
-
-done
-
 BAT="/sys/class/power_supply/BAT0"
 NOTIF_ID=""
 
@@ -30,3 +22,6 @@ while true; do
 
     sleep 20
 done
+
+updates=$(pacman -Qu)
+if [ -n "$updates" ]; then     count=$(echo "$updates" | wc -l);     dunstify -u critical -r 9990 "pkgs ($count)" "\n$updates"; fi
