@@ -110,8 +110,8 @@ bindsym $mod+Ctrl+s exec --no-startup-id maim -s | xclip -selection clipboard -t
 bindsym $mod+e exec caja
 bindsym $mod+m exec alacritty -e yazi
 bindsym $mod+v exec eom
-bindsym $mod+i exec alacritty -e ~/script/i3/wttr3
-bindsym $mod+Shift+i exec alacritty -e ~/script/i3/wttr2
+bindsym $mod+i exec alacritty -e ~/script/wttr3
+bindsym $mod+Shift+i exec alacritty -e ~/script/wttr2
 #bindsym $mod+o exec --no-startup-id exec alacritty -e sh -c "curl wttr.in/Rijswijk?2 && read -n 1"
 bindsym $mod+o exec --no-startup-id xrandr --output HDMI1 --mode 1920x1080
 bindsym $mod+Shift+o exec --no-startup-id xrandr --output HDMI1 --off
