@@ -1,2 +1,0 @@
-sleep 2
-i3-msg "[class=\"firefox\"] floating enable, move scratchpad"
