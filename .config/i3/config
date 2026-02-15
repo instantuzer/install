@@ -2,7 +2,7 @@
 exec --no-startup-id xss-lock -l -- i3lock -n -k -f -p win -c 000000 &
 
 exec_always --no-startup-id redshift -P -O 4000
-#xdg-settings set default-web-browser firefox.desktop
+exec_always --no-startup-id xdg-settings set default-web-browser firefox.desktop
 
 #exec --no-startup-id ~/script/main
 exec --no-startup-id ~/script/inet
