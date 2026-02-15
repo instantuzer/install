@@ -1,0 +1,7 @@
+#!/bin/bash
+
+~/script/up1 &
+~/script/up2 &
+~/script/bat &
+~/script/inet &
+~/script/fire &

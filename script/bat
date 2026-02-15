@@ -1,0 +1,57 @@
+#!/bin/bash
+
+BAT=$(ls /sys/class/power_supply/ | grep -E 'BAT' | head -n 1)
+if [[ -z "$BAT" ]]; then exit 0; fi
+
+BAT="/sys/class/power_supply/BAT0"
+
+LOW_ID=9999
+DISCHARGE_ID=8888
+
+REMIND_INTERVAL=600   # 10 minutes in seconds
+
+last_discharge_notify=0
+was_discharging=0
+
+while true; do
+    PERC=$(cat "$BAT/capacity")
+    STATUS=$(cat "$BAT/status")
+    now=$(date +%s)
+
+    # -----------------------------
+    # DISCHARGING REMINDER LOGIC
+    # -----------------------------
+    if [[ "$STATUS" == "Discharging" ]]; then
+        if [[ $was_discharging -eq 0 ]]; then
+            # Just started discharging → notify immediately
+            dunstify -u critical -r $DISCHARGE_ID \
+                "Discharging" "at ${PERC}%"
+
+            last_discharge_notify=$now
+            was_discharging=1
+        elif (( now - last_discharge_notify >= REMIND_INTERVAL )); then
+            # 10 minutes passed → remind
+            dunstify -u critical -r $DISCHARGE_ID \
+                "Discharging" "at ${PERC}%"
+
+            last_discharge_notify=$now
+        fi
+    else
+        # Charging or Full → reset state and close notification
+        dunstctl close $DISCHARGE_ID
+        was_discharging=0
+    fi
+
+    # -----------------------------
+    # LOW BATTERY LOGIC (unchanged)
+    # -----------------------------
+    if [[ "$PERC" -lt 25 ]]; then
+        dunstify -u critical -r $LOW_ID \
+            "Low" "at ${PERC}%"
+    else
+        dunstctl close $LOW_ID
+    fi
+
+    sleep 5
+done
+

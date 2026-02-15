@@ -1,0 +1,6 @@
+[global]
+font = "Terminus 19"
+width = 500
+max_icon_size = 30
+allow_markup = true
+origin = bottom-right
