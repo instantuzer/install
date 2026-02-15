@@ -109,9 +109,12 @@ arch-chroot /mnt bash <<😺
 set -e
 
 pacman -S --noconfirm mkinitcpio
-sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf keyboard block encrypt filesystems)/' /etc/mkinitcpio.conf
-#sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect keyboard block sd-encrypt filesystems)/' /etc/mkinitcpio.conf
+#sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf keyboard block encrypt filesystems)/' /etc/mkinitcpio.conf
+
+sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect keyboard block sd-encrypt filesystems)/' /etc/mkinitcpio.conf
+
 #sed -i 's/^HOOKS=.*/HOOKS=(base !!!!!!!!!!microcode systemd autodetect keyboard sd-vconsole block sd-encrypt filesystems)/' /etc/mkinitcpio.conf
+
 #echo "KEYMAP=us" >> /etc/vconsole.conf
 
 #!!!                      HOOKS=(base systemd autodetect keyboard sd-vconsole block sd-encrypt filesystems)
